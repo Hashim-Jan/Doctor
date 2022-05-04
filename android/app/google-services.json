@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904979880872",
+    "project_id": "doctors-de-peshawar",
+    "storage_bucket": "doctors-de-peshawar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904979880872:android:358718c7d5a2e4282bdb9d",
+        "android_client_info": {
+          "package_name": "com.example.doctors_de_peshawar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904979880872-tavgg1h6fsf1knkl1rmhje4pd2e7l0u1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhREJze16IKz9EPS--LptiG0cdXf22oNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904979880872-tavgg1h6fsf1knkl1rmhje4pd2e7l0u1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
