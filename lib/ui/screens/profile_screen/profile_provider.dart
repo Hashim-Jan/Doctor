@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:doctors_de_peshawar/core/constants/date_formates.dart';
 import 'package:doctors_de_peshawar/core/enums/view_state.dart';
 import 'package:doctors_de_peshawar/core/services/auth_services.dart';
 import 'package:doctors_de_peshawar/core/services/database_services.dart';
@@ -24,6 +25,10 @@ class ProfileProvider extends BaseViewModel {
   String? dateOfBirth;
   String? uploadedImagePath;
   bool isProfileUpdated = false;
+  TextEditingController nameController = TextEditingController();
+  ProfileProvider() {
+    nameController = TextEditingController(text: currentUser.appUser.userName);
+  }
 
   updateUserProfile(BuildContext context) async {
     if (formKey.currentState!.validate()) {
@@ -59,5 +64,13 @@ class ProfileProvider extends BaseViewModel {
       isImagePicked = true;
       notifyListeners();
     }
+  }
+
+  ///
+  /// pick birthday
+  ///
+  pickBirthday(value) {
+    dateOfBirth = date.format(value);
+    notifyListeners();
   }
 }
