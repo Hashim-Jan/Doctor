@@ -1,4 +1,3 @@
-import 'package:doctors_de_peshawar/core/constants/colors.dart';
 import 'package:doctors_de_peshawar/core/constants/styles.dart';
 import 'package:doctors_de_peshawar/core/enums/view_state.dart';
 import 'package:doctors_de_peshawar/ui/custom_widget/custom_back_button.dart';
@@ -60,33 +59,56 @@ class EditProfileScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 40),
-                      TextFormField(
-                        onChanged: (value) {
-                          model.name = value;
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Please enter your name";
-                          }
-                        },
-                        decoration: searchStyle.copyWith(
-                          hintText: "Your name",
+                      Card(
+                        child: TextFormField(
+                          onChanged: (value) {
+                            model.name = value;
+                          },
+                          controller: model.nameController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Please enter your name";
+                            }
+                          },
+                          decoration: searchStyle.copyWith(
+                            hintText: "Your name",
+                          ),
                         ),
                       ),
                       SizedBox(height: 20),
-                      TextFormField(
-                        onChanged: (value) {
-                          model.dateOfBirth = value;
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Please enter correct Date of Birth";
-                          }
-                        },
-                        decoration: searchStyle.copyWith(
-                          hintText: "Your date of birth",
+                      Card(
+                        child: InkWell(
+                          onTap: () {
+                            _showDatePicker(context, model);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 3, horizontal: 10),
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              height: 47,
+                              width: double.infinity,
+                              child: model.dateOfBirth == null
+                                  ? Text(
+                                      "${model.currentUser.appUser.dateOfBirth}")
+                                  : Text("${model.dateOfBirth}"),
+                            ),
+                          ),
                         ),
                       ),
+                      // TextFormField(
+                      //   onChanged: (value) {
+                      //     model.dateOfBirth = value;
+                      //   },
+                      //   validator: (value) {
+                      //     if (value!.isEmpty) {
+                      //       return "Please enter correct Date of Birth";
+                      //     }
+                      //   },
+                      //   decoration: searchStyle.copyWith(
+                      //     hintText: "Your date of birth",
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 50,
                       ),
@@ -105,5 +127,21 @@ class EditProfileScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  ///
+  /// Pick date
+  ///
+  Future<void> _showDatePicker(
+      BuildContext context, ProfileProvider model) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1950, 8),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null) {
+      model.pickBirthday(picked);
+    }
   }
 }
